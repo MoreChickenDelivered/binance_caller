@@ -9,10 +9,11 @@ endpoint = '/sapi/v1/margin/account'
 
 def process_response(response:str):
     response = json.loads(response)
-    response['userAssets'] = {
+    response['userAssets'] = [
         assetInfo for assetInfo in response['userAssets']
             if float(assetInfo['netAsset']) != 0
-    }
+    ]
+    return response
 
 def main():
     response  = signed_get_request(subexchange, endpoint, api_key, secret_key)
