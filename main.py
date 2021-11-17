@@ -16,8 +16,9 @@ def process_response(response:str):
 
 def main():
     response  = signed_get_request(subexchange, endpoint, api_key, secret_key)
+    
     print(f'Code: {response.status_code}')
-    print(f'Response: {response.text}')
+    print(f'Response: {process_response(response.text)}')
 
 if __name__ == '__main__':
     main()
